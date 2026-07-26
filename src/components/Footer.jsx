@@ -15,12 +15,15 @@ export default function Footer() {
         <div className="grid gap-12 py-16 lg:grid-cols-12">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <div className="rounded-xl bg-white/95 p-3 shadow-sm inline-block">
+            <div className="rounded-xl bg-white p-3 shadow-sm inline-block">
               <Logo />
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-400">
               {company.overview}
             </p>
+            <div className="mt-4 rounded-xl border border-accent-500/30 bg-accent-500/10 p-3.5 text-xs font-semibold text-accent-300">
+              {company.distributorText}
+            </div>
             <div className="mt-6 flex gap-3">
               <a
                 href={company.social.linkedin}

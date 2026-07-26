@@ -5,7 +5,7 @@ import Reveal from '../components/Reveal'
 import { company } from '../data/site'
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '', file: null })
   const [sent, setSent] = useState(false)
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
@@ -13,8 +13,9 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault()
     // Compose a mailto with the enquiry details (no backend required).
+    const fileNotice = form.file ? `\nAttached file: ${form.file.name}` : ''
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\n${form.message}`,
+      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}${fileNotice}\n\n${form.message}`,
     )
     const subject = encodeURIComponent(form.subject || 'Website Enquiry')
     window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`
@@ -37,8 +38,8 @@ export default function Contact() {
     {
       icon: MessageCircle,
       label: 'WhatsApp',
-      value: company.phone,
-      href: `https://wa.me/${company.phoneRaw}`,
+      value: company.whatsapp || '+91 7339491001',
+      href: `https://wa.me/${company.whatsappRaw || '917339491001'}`,
       external: true,
     },
     {
@@ -149,6 +150,24 @@ export default function Contact() {
                         className="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100"
                       />
                     </div>
+                    <div>
+                      <label htmlFor="attachment" className="mb-1.5 flex items-center justify-between text-sm font-medium text-slate-700">
+                        <span>File Attachment</span>
+                        <span className="text-xs font-normal text-slate-500">(Optional)</span>
+                      </label>
+                      <input
+                        id="attachment"
+                        name="attachment"
+                        type="file"
+                        onChange={(e) => setForm({ ...form, file: e.target.files[0] })}
+                        className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand-700 hover:file:bg-brand-100 focus:outline-none"
+                      />
+                      {form.file && (
+                        <p className="mt-1.5 text-xs text-brand-700 font-medium">
+                          Selected file: {form.file.name}
+                        </p>
+                      )}
+                    </div>
                     <button type="submit" className="btn-primary w-full sm:w-auto">
                       Send Enquiry <Send className="h-4 w-4" />
                     </button>
@@ -176,7 +195,7 @@ export default function Contact() {
                     <InfoRow icon={Clock} title="Working Hours" value="Mon – Sat, 9:00 AM – 6:00 PM IST" />
                   </ul>
                   <a
-                    href={`https://wa.me/${company.phoneRaw}`}
+                    href={`https://wa.me/${company.whatsappRaw || '917339491001'}`}
                     target="_blank"
                     rel="noreferrer noopener"
                     className="mt-8 flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1ebe57]"
@@ -196,8 +215,8 @@ export default function Contact() {
           <Reveal>
             <div className="overflow-hidden rounded-3xl border border-slate-100 shadow-card">
               <iframe
-                title="Pragna Nexgen location — Chennai"
-                src="https://www.google.com/maps?q=Chennai,Tamil%20Nadu,India&output=embed"
+                title="Pragna Nexgen location — Nungambakkam, Chennai"
+                src="https://www.google.com/maps?q=17,+Lady+Madhavan+Rd,+Mahalingapuram,+Nungambakkam,+Chennai,+Tamil+Nadu+600034&output=embed"
                 width="100%"
                 height="420"
                 style={{ border: 0 }}

@@ -8,7 +8,6 @@ import About from './pages/About'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Solutions from './pages/Solutions'
-import News from './pages/News'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 
@@ -24,7 +23,6 @@ export default function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/solutions" element={<Solutions />} />
-          <Route path="/news" element={<News />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -82,6 +82,15 @@ export default function ProductDetail() {
                 ))}
               </dl>
               <div className="mt-6 space-y-3 border-t border-slate-100 pt-6">
+                <a
+                  href="/Pragna_NexGen_Wireless_Sensors_Brochure.pdf"
+                  download="Pragna_NexGen_Wireless_Sensors_Brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-accent w-full"
+                >
+                  <ArrowRight className="h-4 w-4" /> Download Brochure PDF
+                </a>
                 <a href={`tel:+${company.phoneRaw}`} className="btn-primary w-full">
                   <Phone className="h-4 w-4" /> Call to Enquire
                 </a>

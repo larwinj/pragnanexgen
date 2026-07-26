@@ -9,17 +9,20 @@ export const company = {
   founded: 'Chennai, Tamil Nadu, India',
   size: '2–10 employees',
   email: 'director@pragnanexgen.com',
-  phone: '+91 7339491001',
-  phoneRaw: '917339491001',
+  phone: '+91(044)42132613',
+  phoneRaw: '9104442132613',
+  whatsapp: '+91 7339491001',
+  whatsappRaw: '917339491001',
   website: 'www.pragnanexgen.com',
+  distributorText: 'We are the authorised distributors of wireless sensor VTI corporation in India',
   address: {
     city: 'Chennai',
     region: 'Tamil Nadu',
     country: 'India',
-    full: 'Chennai, Tamil Nadu, India',
+    full: '17, Lady Madhavan Rd, Mahalingapuram, Nungambakkam, Chennai, Tamil Nadu 600034',
   },
   overview:
-    'We are a Next Generation Technology Consulting Company and provider of Next Generation Technology Products. AI-based platforms and solutions are our portfolio. We have built international collaborations to source advanced technology products — including wireless temperature sensors, wireless ambient sensors, thermal imaging cameras, data collectors and AI platforms.',
+    'We are a Next Generation Technology Consulting Company and provider of Next Generation Technology Products. AI-based platforms and solutions are our portfolio. We are the authorised distributors of wireless sensor VTI corporation in India — bringing advanced wireless temperature sensors, environmental sensors, data collectors and AI platforms to your operations.',
   social: {
     linkedin: 'https://www.linkedin.com/company/pragna-nexgen-technologies',
     website: 'https://www.pragnanexgen.com',
@@ -27,21 +30,18 @@ export const company = {
 }
 
 export const specialties = [
-  'Wireless Temperature Sensor',
-  'Wireless Ambient Sensor',
-  'Thermal Imaging Camera',
-  'AI Platform',
-  'Data Collector',
-  'AI Thermal Camera Box',
-  'AI BOX — Automatic Fire & Smoke Detection & Alert',
+  'TBR22 Wireless Temperature Sensor',
+  'Environmental Sensor TBR22-BE',
+  'Data Collectors & Gateways',
+  'AI Monitoring Platform',
+  'Substation & Switchgear Monitoring',
   'Technology Consulting',
-  'Smart P&ID Systems',
 ]
 
 export const stats = [
   { value: '24/7', label: 'Automated Monitoring & Alerts' },
-  { value: '50k+', label: 'Faces Recognised (AI Access Control)' },
-  { value: '9+', label: 'Technology Specialties' },
+  { value: '500kV', label: 'Surge Voltage Capability' },
+  { value: '10 Yrs', label: 'Sensor Battery Life' },
   { value: 'Global', label: 'International Collaborations' },
 ]
 
@@ -51,13 +51,13 @@ export const productCategories = [
   { id: 'thermal', name: 'Thermal Imaging' },
   { id: 'ai', name: 'AI Platforms' },
   { id: 'gateway', name: 'Data Collectors' },
-  { id: 'safety', name: 'Safety & Detection' },
+  { id: 'ai', name: 'AI Platforms' },
 ]
 
 export const products = [
   {
-    slug: 'wireless-temperature-sensor',
-    name: 'Wireless Temperature Sensor',
+    slug: 'tbr22-temperature-sensor',
+    name: 'TBR22 Temperature Sensor',
     category: 'sensors',
     icon: 'Thermometer',
     tagline: 'Continuous, battery-efficient temperature monitoring',
@@ -66,131 +66,91 @@ export const products = [
     image:
       'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
     features: [
-      'High-accuracy contact and non-contact temperature sensing',
-      'Industry-leading battery life for maintenance-free operation',
-      '2.4GHz wireless transmission to the data collector',
-      'Ideal for medium and high-voltage switchgear and busbars',
+      'Direct installation on busbars, cable terminations & contact points',
+      'Powered by self-powered energy harvesting or battery supply (up to 10 years battery life)',
+      'Withstands lightning impulse & switching surge voltages up to 500kV',
+      '2.4GHz wireless communication up to 100 meters in open space',
+      'IP67 protection level, suitable for both indoor & outdoor applications',
+      'Tested to IEC 60060-1, IEC 60529, IEC 60270 & RoHS 2 standards',
     ],
     specs: [
-      ['Measurement Range', '-40°C to +125°C'],
-      ['Accuracy', '±0.5°C'],
-      ['Wireless', '2.4GHz ISM band'],
-      ['Power', 'Long-life industrial battery'],
+      ['Communication', '2.4GHz bands'],
+      ['Transmission Range', '100 meters in open space'],
+      ['Sampling Frequency', '5s (self-powered); 60s (battery-powered)'],
+      ['Power Supply', 'Self-powered (primary current ≥ 1 A) or Battery (10 yrs)'],
+      ['Operating Voltage Rating', 'Up to 500kV'],
+      ['Temperature Range', '-10°C ~ 120°C'],
+      ['Accuracy', '± 1°C'],
+      ['Transmission Power', '08 dBm'],
+      ['Working Temperature', '-20°C to 80°C'],
+      ['Partial Discharge Level', '< 10pC'],
+      ['Protection Level', 'IP67'],
+      ['Size', 'H: ~14.4 mm; W: ~31.5 mm; D: ~32.5 mm'],
+      ['Weight', '~ 35 gram'],
     ],
   },
   {
-    slug: 'wireless-ambient-sensor',
-    name: 'Wireless Ambient Sensor',
+    slug: 'environmental-sensor-tbr22-be',
+    name: 'Environmental Sensor TBR22-BE',
     category: 'sensors',
     icon: 'Wind',
-    tagline: 'Temperature & humidity for the surrounding environment',
+    tagline: 'High-Accuracy Wireless Temperature & Humidity Sensor',
     summary:
-      'Environmental monitoring sensor designed for electrical cabinets and enclosed rooms, reporting temperature and humidity so you can act on condensation and thermal risk early.',
+      'Temperature and humidity monitoring sensor with high accuracy, applicable in high electromagnetic field environments up to 500 kV.',
     image:
       'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
     features: [
-      'Combined temperature and humidity measurement',
-      'Designed for electrical cabinet and cold-room applications',
-      'High accuracy with low power consumption',
-      'Seamless integration with the AI monitoring platform',
+      'Combined temperature and humidity monitoring for indoor assets',
+      'Utilizes ultra-low-power technology ensuring service life up to 10 years',
+      'High-voltage electromagnetic field tolerance up to 500 kV',
+      'High precision measurement: ±0.2°C temperature & ±2% RH humidity',
+      'Real-time display, trend charts (up to 10 years) & custom threshold alerts',
+      'IP50 protection level, RoHS 2 compliant',
     ],
     specs: [
-      ['Temperature', '-20°C to +60°C'],
-      ['Humidity', '0–100% RH'],
-      ['Accuracy', '±2% RH'],
-      ['Wireless', '2.4GHz ISM band'],
+      ['Communication', '2.4GHz bands'],
+      ['Transmission Range', '100 meters in open space'],
+      ['Sampling Frequency', '140s'],
+      ['Environmental Temp Range', '-40°C to 125°C'],
+      ['Humidity Range', '0–100% RH'],
+      ['Accuracy', 'Temp: ±0.2°C / Humidity: ±2% RH'],
+      ['Transmission Power', '08 dBm'],
+      ['Power Supply', 'Battery-powered (up to 10 years)'],
+      ['Operating Voltage Rating', 'Up to 500 kV'],
+      ['Working Temp & Humidity', 'Temp: -10°C to 80°C / Humidity: ≤ 100% RH'],
+      ['Partial Discharge Level', '< 10pC'],
+      ['Protection Level', 'IP50'],
+      ['Size', 'H: ~13.3 mm; W: ~34 mm; D: ~37 mm'],
+      ['Weight', '~ 45 gram'],
     ],
   },
   {
-    slug: 'thermal-imaging-camera',
-    name: 'Thermal Imaging Camera',
-    category: 'thermal',
-    icon: 'Camera',
-    tagline: 'See heat before it becomes a hazard',
-    summary:
-      'Smart thermal imaging equipment that captures and processes thermal image data across equipment surfaces, revealing hotspots invisible to the naked eye.',
-    image:
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
-    features: [
-      'High-resolution radiometric thermal imaging',
-      'Automatic hotspot detection and temperature mapping',
-      'Continuous, unattended surveillance of critical assets',
-      'Data streamed to the AI platform for trend analysis',
-    ],
-    specs: [
-      ['Detector', 'Uncooled microbolometer'],
-      ['Thermal Sensitivity', '< 50 mK'],
-      ['Output', 'Radiometric + visual'],
-      ['Integration', 'AI Thermal Camera Box'],
-    ],
-  },
-  {
-    slug: 'ai-thermal-camera-box',
-    name: 'AI Thermal Camera Box',
-    category: 'thermal',
-    icon: 'Cpu',
-    tagline: 'Edge AI for thermal image collection & processing',
-    summary:
-      'An advanced edge solution for collecting and processing thermal image data. On-device AI turns raw thermal streams into actionable alerts without overloading your network.',
-    image:
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80',
-    features: [
-      'On-edge AI processing of thermal image data',
-      'Real-time hotspot classification and alerting',
-      'Reduces bandwidth by processing at the source',
-      'Integrates with SCADA and central monitoring',
-    ],
-    specs: [
-      ['Processing', 'Edge AI inference'],
-      ['Inputs', 'Multiple thermal camera streams'],
-      ['Alerts', 'Real-time push + SCADA'],
-      ['Deployment', 'DIN-rail / cabinet mount'],
-    ],
-  },
-  {
-    slug: 'ai-fire-smoke-detection-box',
-    name: 'AI BOX — Fire & Smoke Detection',
-    category: 'safety',
-    icon: 'Flame',
-    tagline: 'Automatic fire & smoke detection and alert',
-    summary:
-      'AI BOX automatically detects smoke and flame within camera range and raises instant alerts. It also flags intrusions into power-line safety corridors — protecting people and assets around the clock.',
-    image:
-      'https://images.unsplash.com/photo-1574870111867-089730e5a72b?auto=format&fit=crop&w=1200&q=80',
-    features: [
-      'Automatic detection of smoke and flame in the camera field',
-      'Instant multi-channel alerts (mobile, email, SCADA)',
-      'Power-line corridor intrusion detection',
-      'Runs continuously with no manual monitoring',
-    ],
-    specs: [
-      ['Detection', 'Smoke, flame, intrusion'],
-      ['Response', 'Real-time alerting'],
-      ['Inputs', 'IP / thermal cameras'],
-      ['Use cases', 'Substations, plants, warehouses'],
-    ],
-  },
-  {
-    slug: 'data-collector-gateway',
-    name: 'Data Collector / Gateway',
+    slug: 'data-collectors',
+    name: 'Data Collectors',
     category: 'gateway',
     icon: 'Router',
-    tagline: 'The bridge between your sensors and the cloud',
+    tagline: 'Wireless Sensor Gateway & Multi-Protocol Controller (GWC-24-IB-TH)',
     summary:
-      'A rugged data collector that gathers readings from wireless sensors over 2.4GHz and forwards them securely to the AI monitoring platform for storage, analysis and alerting.',
+      'Collects data from wireless sensors utilizing 2.4GHz wireless technology with 16 channels, forwarding readings to central monitoring or SCADA via RJ45 Ethernet, Wi-Fi, 4G LTE, or RS485.',
     image:
       'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
     features: [
-      'Aggregates data from many wireless sensors',
-      '2.4GHz wireless collection with robust link quality',
-      'Secure uplink to the AI platform',
-      'Compact design for cabinet and panel installation',
+      '2.4GHz wireless technology with 16 channels for optimal transmission',
+      'License-free ISM band usage with user-friendly web GUI integrated',
+      'Supports Modbus TCP / Modbus RTU / SCADA IEC 60870-5-104 Master',
+      'Multiple connectivity options: RJ45 Ethernet, Wi-Fi 2.4GHz, 4G LTE, RS485',
+      'Supports Partial Discharge (PD), DGA & Dielectric Loss (TD) monitoring integration',
+      'No hardware sensor limitation (Defaulted for 32 sensors license)',
     ],
     specs: [
-      ['Wireless', '2.4GHz ISM band'],
-      ['Capacity', 'Multiple sensors per gateway'],
-      ['Uplink', 'Ethernet / cellular'],
-      ['Mounting', 'DIN-rail / panel'],
+      ['Function', 'IEC 60870-5-104 master, SCADA & PD/DGA integration'],
+      ['Ethernet Interface', 'RJ45 - Web GUI configuration & center transmission'],
+      ['Wifi Interface', '2.4GHz 20dBm for Web GUI & data transmission'],
+      ['4G Interface', 'Micro SIM card 4G LTE Network'],
+      ['RS485 Interface', '(Optional) Modbus RTU with HMI integration'],
+      ['Connected Sensors', 'Default 32 sensors (no hardware limit)'],
+      ['Size', 'H: 93mm × W: 84mm × T: 24mm'],
+      ['Weight', '200 gram'],
     ],
   },
   {
@@ -198,45 +158,25 @@ export const products = [
     name: 'AI Monitoring Platform',
     category: 'ai',
     icon: 'BrainCircuit',
-    tagline: 'One platform for centralised, intelligent monitoring',
+    tagline: 'Centralized Equipment Condition Monitoring & Analysis Platform',
     summary:
-      'A software platform integrating AI algorithms for centralised monitoring of assets and grids. It unifies data from sensors and cameras, delivers 24/7 alerts and visualises everything in one place.',
+      'Centralized software and AI monitoring platform for visualization, analysis, diagnosis, and assessment of electrical equipment condition across substations and plants.',
     image:
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
     features: [
-      '24/7 automated alerts with customisable thresholds',
-      'SCADA integration and mobile push notifications',
-      '3D / BIM visualisation of monitored assets',
-      'Flexible sampling rates and multi-system integration',
+      'Real-time display of temperature values & equipment warning status',
+      'Instantaneous measurement points tracking & 10-year trend charts',
+      'Abnormal temperature warnings for busbars, cable heads & contact points',
+      'Location positioning on maps & custom report generation',
+      'One-way encrypted sensor-to-gateway communication with VTI protocol',
+      'Multi-protocol destination push (MQTT, HTTP, HTTPS, FTP) & Mobile Apps (iOS/Android)',
     ],
     specs: [
-      ['Alerts', 'Threshold + AI anomaly'],
-      ['Integration', 'SCADA, mobile, email'],
-      ['Visualisation', '3D / BIM dashboards'],
-      ['Deployment', 'Cloud or on-premise'],
-    ],
-  },
-  {
-    slug: 'smart-pid-systems',
-    name: 'Smart P&ID Systems',
-    category: 'ai',
-    icon: 'Workflow',
-    tagline: 'Intelligent piping & instrumentation diagrams',
-    summary:
-      'Smart P&ID systems that digitise piping and instrumentation diagrams and connect them to live data — bringing your process documentation to life with real-time context.',
-    image:
-      'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80',
-    features: [
-      'Digital, data-linked P&ID diagrams',
-      'Live overlay of sensor and process data',
-      'Faster troubleshooting and change management',
-      'Integrates with the AI monitoring platform',
-    ],
-    specs: [
-      ['Format', 'Digital, interactive P&ID'],
-      ['Data', 'Live sensor overlay'],
-      ['Users', 'Engineering & operations'],
-      ['Integration', 'AI platform'],
+      ['Security', 'No OS on sensor/gateway; tamper-proof data protection'],
+      ['Encryption', 'One-way VTI proprietary protocol'],
+      ['Uplink Protocols', 'MQTT, HTTP, HTTPS, FTP with username/password & .pem key'],
+      ['Applications', 'Web Dashboard, iOS App, Android App'],
+      ['Alerting', 'Configurable thresholds & multi-channel warnings'],
     ],
   },
 ]
@@ -250,7 +190,7 @@ export const solutions = [
       'Full oversight of transformer stations — temperature, humidity and thermal condition of every critical device — to prevent unplanned outages.',
     points: [
       'Wireless temperature & ambient sensing across the substation',
-      'Thermal imaging on transformers, busbars and connections',
+      'Thermal & environmental condition monitoring on busbars and connections',
       'Centralised alerting through the AI platform',
     ],
   },
@@ -288,18 +228,6 @@ export const solutions = [
       'Sensors placed at connection and contact points',
       'Real-time trend analysis and threshold alerts',
       'Safe, contactless installation in energised cabinets',
-    ],
-  },
-  {
-    slug: 'fire-smoke-detection',
-    name: 'Fire & Smoke Detection',
-    icon: 'Flame',
-    summary:
-      'AI-driven automatic detection of fire and smoke across your facility, with instant alerts to the right people.',
-    points: [
-      'Camera-based smoke and flame detection with AI',
-      'Multi-channel instant alerting',
-      'Protects substations, plants and warehouses',
     ],
   },
   {
@@ -342,7 +270,7 @@ export const whyChoose = [
     icon: 'Layers',
     title: 'End-to-End Solutions',
     description:
-      'From wireless sensors and thermal cameras to data collectors and the AI platform — one integrated, comprehensive system.',
+      'From wireless sensors and environmental sensors to data collectors and the AI platform — one integrated, comprehensive system.',
   },
   {
     icon: 'GraduationCap',
@@ -358,105 +286,9 @@ export const whyChoose = [
   },
   {
     icon: 'Globe2',
-    title: 'Global Collaborations',
+    title: 'Authorised VTI Distributor',
     description:
-      'International partnerships let us source advanced, proven technology products and bring them to your operations.',
-  },
-]
-
-export const news = [
-  {
-    slug: 'ai-fire-smoke-detection-launch',
-    title: 'How AI BOX brings automatic fire & smoke detection to substations',
-    category: 'AI & Safety',
-    date: '2026-05-18',
-    readTime: '4 min read',
-    excerpt:
-      'Camera-based AI is transforming fire safety — detecting smoke and flame in seconds and alerting teams before a small event becomes a major incident.',
-    image:
-      'https://images.unsplash.com/photo-1574870111867-089730e5a72b?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    slug: 'wireless-temperature-sensors-guide',
-    title: 'Why wireless temperature sensors are the future of switchgear monitoring',
-    category: 'Sensors',
-    date: '2026-04-02',
-    readTime: '5 min read',
-    excerpt:
-      'Contactless, battery-efficient wireless sensors let you monitor busbars and joints continuously — no shutdowns, no manual inspections.',
-    image:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    slug: 'thermal-imaging-predictive-maintenance',
-    title: 'Thermal imaging and predictive maintenance: seeing failures before they happen',
-    category: 'Thermal Imaging',
-    date: '2026-03-11',
-    readTime: '6 min read',
-    excerpt:
-      'Radiometric thermal cameras reveal hotspots invisible to the eye. Combined with AI, they turn raw heat maps into a maintenance schedule.',
-    image:
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    slug: 'ai-monitoring-platform-scada',
-    title: 'Bringing sensors, cameras and SCADA together on one AI platform',
-    category: 'AI Platform',
-    date: '2026-02-20',
-    readTime: '5 min read',
-    excerpt:
-      'A single pane of glass for every monitored asset — with 24/7 alerts, 3D visualisation and flexible integration into your existing systems.',
-    image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    slug: 'iot-energy-efficiency',
-    title: 'IoT monitoring as the foundation of energy efficiency',
-    category: 'Energy',
-    date: '2026-01-15',
-    readTime: '4 min read',
-    excerpt:
-      'You cannot manage what you do not measure. Continuous IoT monitoring is the first step towards a measurable, improvable energy strategy.',
-    image:
-      'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    slug: 'cold-chain-compliance',
-    title: 'Protecting the cold chain: continuous temperature assurance end to end',
-    category: 'Cold Chain',
-    date: '2025-12-08',
-    readTime: '5 min read',
-    excerpt:
-      'From warehouse to last mile, wireless temperature and humidity monitoring keeps sensitive goods within safe limits — and keeps you compliant.',
-    image:
-      'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=1200&q=80',
-  },
-]
-
-export const resources = [
-  {
-    title: 'Company Brochure',
-    description: 'An overview of Pragna Nexgen products, solutions and capabilities.',
-    type: 'PDF',
-    icon: 'FileText',
-  },
-  {
-    title: 'Wireless Sensor Datasheet',
-    description: 'Technical specifications for our wireless temperature and ambient sensors.',
-    type: 'PDF',
-    icon: 'FileSpreadsheet',
-  },
-  {
-    title: 'AI Platform Overview',
-    description: 'How the AI monitoring platform unifies data, alerts and visualisation.',
-    type: 'PDF',
-    icon: 'Presentation',
-  },
-  {
-    title: 'AI BOX Fire & Smoke Guide',
-    description: 'Deployment guide for automatic fire and smoke detection & alerting.',
-    type: 'PDF',
-    icon: 'BookOpen',
+      'We are the authorised distributors of wireless sensor VTI corporation in India, delivering certified, high-grade hardware.',
   },
 ]
 
@@ -465,6 +297,5 @@ export const navLinks = [
   { name: 'About Us', path: '/about' },
   { name: 'Products', path: '/products' },
   { name: 'Solutions', path: '/solutions' },
-  { name: 'News & Resources', path: '/news' },
   { name: 'Contact', path: '/contact' },
 ]

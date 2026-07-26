@@ -17,13 +17,11 @@ import {
   products,
   whyChoose,
   industries,
-  news,
   specialties,
 } from '../data/site'
 
 export default function Home() {
-  const featuredProducts = products.slice(0, 6)
-  const latestNews = news.slice(0, 3)
+  const featuredProducts = products
 
   return (
     <>
@@ -295,56 +293,6 @@ export default function Home() {
                     {ind.description}
                   </p>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ NEWS PREVIEW ============ */}
-      <section className="section">
-        <div className="container-page">
-          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-            <SectionHeading
-              align="left"
-              eyebrow="News & Resources"
-              title="Insights from the world of AI monitoring"
-            />
-            <Link to="/news" className="btn-secondary shrink-0">
-              All Articles <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {latestNews.map((n, i) => (
-              <Reveal key={n.slug} delay={i * 90}>
-                <article className="card group flex h-full flex-col overflow-hidden hover:-translate-y-1 hover:shadow-card-hover">
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img
-                      src={n.image}
-                      alt={n.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <div className="flex items-center gap-3 text-xs font-medium text-slate-500">
-                      <span className="rounded-full bg-brand-50 px-3 py-1 font-semibold text-brand-700">
-                        {n.category}
-                      </span>
-                      <span>{n.readTime}</span>
-                    </div>
-                    <h3 className="mt-4 text-lg font-bold leading-snug text-slate-900 group-hover:text-brand-700">
-                      {n.title}
-                    </h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{n.excerpt}</p>
-                    <Link
-                      to="/news"
-                      className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-700"
-                    >
-                      Read article <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </article>
               </Reveal>
             ))}
           </div>

@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, MessageSquare } from 'lucide-react'
+import { ArrowRight, MessageSquare, Download, FileText } from 'lucide-react'
 import Icon from '../components/Icon'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import CTASection from '../components/CTASection'
-import { products, productCategories } from '../data/site'
+import { products, productCategories, company } from '../data/site'
 
 export default function Products() {
   const [active, setActive] = useState('all')
@@ -18,11 +18,35 @@ export default function Products() {
       <PageHeader
         title="Products & Solutions"
         crumb="Products"
-        subtitle="An integrated portfolio of wireless sensors, thermal imaging, AI platforms and detection systems — everything you need to monitor and protect critical assets."
+        subtitle="Authorised distributor of wireless sensor VTI corporation in India — providing high-precision wireless temperature sensors, environmental sensors, data collectors and AI platforms."
       />
 
       <section className="section">
         <div className="container-page">
+          {/* Brochure banner */}
+          <div className="mb-10 flex flex-col items-center justify-between gap-4 rounded-2xl bg-gradient-to-r from-brand-900 via-brand-800 to-brand-900 p-6 text-white shadow-md sm:flex-row sm:p-8">
+            <div className="flex items-center gap-4">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/10 text-accent-400">
+                <FileText className="h-6 w-6" />
+              </span>
+              <div>
+                <h3 className="text-lg font-bold text-white">Product Catalog Brochure</h3>
+                <p className="text-xs text-brand-200 sm:text-sm">
+                  Download our official product brochure for complete technical specifications & test standards.
+                </p>
+              </div>
+            </div>
+            <a
+              href="/Pragna_NexGen_Wireless_Sensors_Brochure.pdf"
+              download="Pragna_NexGen_Wireless_Sensors_Brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-accent shrink-0"
+            >
+              <Download className="h-4 w-4" /> Download Brochure (PDF)
+            </a>
+          </div>
+
           {/* Category filter */}
           <div className="mb-12 flex flex-wrap justify-center gap-3">
             <button

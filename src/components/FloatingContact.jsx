@@ -9,7 +9,7 @@ export default function FloatingContact() {
   const actions = [
     {
       label: 'WhatsApp',
-      href: `https://wa.me/${company.phoneRaw}`,
+      href: `https://wa.me/${company.whatsappRaw || '917339491001'}`,
       icon: MessageCircle,
       className: 'bg-[#25D366] hover:bg-[#1ebe57]',
       external: true,
