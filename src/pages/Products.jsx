@@ -1,24 +1,18 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, MessageSquare, Download, FileText } from 'lucide-react'
-import Icon from '../components/Icon'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import CTASection from '../components/CTASection'
-import { products, productCategories, company } from '../data/site'
+import ProductCarousel from '../components/ProductCarousel'
+import { products } from '../data/site'
 
 export default function Products() {
-  const [active, setActive] = useState('all')
-
-  const filtered =
-    active === 'all' ? products : products.filter((p) => p.category === active)
-
   return (
     <>
       <PageHeader
         title="Products & Solutions"
         crumb="Products"
-        subtitle="Authorised distributor of wireless sensor VTI corporation in India — providing high-precision wireless temperature sensors, environmental sensors, data collectors and AI platforms."
+        subtitle="Authorised distributor of wireless sensors in India, manufactured by VIET TECHNOLOGY AND INVESTMENT CORPORATION JOIN STOCK COMPANY and marketed by Pragna NexGen Technologies Pvt Ltd, providing high-precision wireless temperature sensors, environmental sensors, data collectors and AI platforms."
       />
 
       <section className="section">
@@ -47,71 +41,10 @@ export default function Products() {
             </a>
           </div>
 
-          {/* Category filter */}
-          <div className="mb-12 flex flex-wrap justify-center gap-3">
-            <button
-              onClick={() => setActive('all')}
-              className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
-                active === 'all'
-                  ? 'bg-brand-700 text-white'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              All Products
-            </button>
-            {productCategories.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => setActive(c.id)}
-                className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
-                  active === c.id
-                    ? 'bg-brand-700 text-white'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
-              >
-                {c.name}
-              </button>
-            ))}
+          {/* Product Carousel */}
+          <div className="mt-6">
+            <ProductCarousel items={products} />
           </div>
-
-          {/* Grid */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p, i) => (
-              <Reveal key={p.slug} delay={(i % 3) * 70}>
-                <article className="card group flex h-full flex-col overflow-hidden hover:-translate-y-1 hover:shadow-card-hover">
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <span className="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-xl bg-white/95 text-brand-700 shadow-md backdrop-blur">
-                      <Icon name={p.icon} className="h-6 w-6" />
-                    </span>
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-lg font-bold text-slate-900">{p.name}</h3>
-                    <p className="mt-1 text-sm font-medium text-accent-600">{p.tagline}</p>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{p.summary}</p>
-                    <div className="mt-5 flex items-center gap-4">
-                      <Link
-                        to={`/products/${p.slug}`}
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700"
-                      >
-                        View details
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </div>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-
-          {filtered.length === 0 && (
-            <p className="py-12 text-center text-slate-500">No products in this category yet.</p>
-          )}
         </div>
       </section>
 

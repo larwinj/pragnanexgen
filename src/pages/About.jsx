@@ -30,8 +30,8 @@ export default function About() {
             <div className="relative">
               <div className="overflow-hidden rounded-3xl shadow-card">
                 <img
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80"
-                  alt="Pragna Nexgen team collaboration"
+                  src="/chennai-tech.png"
+                  alt="Pragna Nexgen Chennai Tech Hub"
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />
@@ -95,9 +95,7 @@ export default function About() {
               </span>
               <h3 className="mt-5 text-2xl font-bold text-slate-900">Our Mission</h3>
               <p className="mt-3 leading-relaxed text-slate-600">
-                To deliver next-generation, AI-based monitoring platforms and products that help
-                organisations prevent failures, extend equipment life and operate more efficiently —
-                proving that there is wisdom in every byte of data.
+                To deliver next-generation wireless temperature and environmental monitoring solutions engineered for high-voltage and critical infrastructure — empowering industries to prevent electrical failures, enhance operational safety, and maximize asset longevity with intelligent data-driven insights.
               </p>
             </div>
           </Reveal>
@@ -108,9 +106,7 @@ export default function About() {
               </span>
               <h3 className="mt-5 text-2xl font-bold text-slate-900">Our Vision</h3>
               <p className="mt-3 leading-relaxed text-slate-600">
-                To be a trusted global partner for intelligent monitoring — bringing advanced,
-                internationally sourced technology to critical infrastructure across energy,
-                healthcare and industry.
+                To be the premier partner for next-generation industrial monitoring and predictive safety across India and globally, setting the standard for reliable wireless sensing technology, seamless SCADA & AI integration, and zero-downtime operations.
               </p>
             </div>
           </Reveal>

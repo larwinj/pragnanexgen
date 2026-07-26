@@ -3,6 +3,7 @@ import { ArrowRight, ArrowLeft, CheckCircle2, ChevronRight, Phone, Mail } from '
 import Icon from '../components/Icon'
 import Reveal from '../components/Reveal'
 import CTASection from '../components/CTASection'
+import ProductCarousel from '../components/ProductCarousel'
 import NotFound from './NotFound'
 import { products, company } from '../data/site'
 
@@ -12,7 +13,7 @@ export default function ProductDetail() {
 
   if (!product) return <NotFound />
 
-  const related = products.filter((p) => p.slug !== product.slug).slice(0, 3)
+  const related = products.filter((p) => p.slug !== product.slug)
 
   return (
     <>
@@ -54,26 +55,27 @@ export default function ProductDetail() {
 
       {/* Features + specs */}
       <section className="section">
-        <div className="container-page grid gap-12 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-slate-900">Key features</h2>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {product.features.map((f) => (
-                <Reveal key={f}>
-                  <div className="flex gap-3 rounded-xl border border-slate-100 bg-white p-5 shadow-card">
+        <div className="container-page grid gap-8 lg:grid-cols-2 items-stretch">
+          {/* Key Features vertical card */}
+          <div>
+            <div className="card h-full p-6 flex flex-col">
+              <h2 className="text-lg font-bold text-slate-900">Key Features</h2>
+              <ul className="mt-4 flex-1 divide-y divide-slate-100">
+                {product.features.map((f) => (
+                  <li key={f} className="flex gap-3 py-3 items-start">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
-                    <span className="text-sm font-medium text-slate-700">{f}</span>
-                  </div>
-                </Reveal>
-              ))}
+                    <span className="text-sm font-medium leading-relaxed text-slate-700">{f}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
           {/* Specs card */}
           <div>
-            <div className="card sticky top-24 p-6">
+            <div className="card h-full p-6 flex flex-col">
               <h3 className="text-lg font-bold text-slate-900">Specifications</h3>
-              <dl className="mt-4 divide-y divide-slate-100">
+              <dl className="mt-4 flex-1 divide-y divide-slate-100">
                 {product.specs.map(([k, v]) => (
                   <div key={k} className="flex items-center justify-between gap-4 py-3">
                     <dt className="text-sm text-slate-500">{k}</dt>
@@ -107,24 +109,8 @@ export default function ProductDetail() {
       <section className="section bg-slate-50">
         <div className="container-page">
           <h2 className="text-2xl font-bold text-slate-900">Related products</h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {related.map((p) => (
-              <Reveal key={p.slug}>
-                <Link
-                  to={`/products/${p.slug}`}
-                  className="card group flex h-full flex-col p-6 hover:-translate-y-1 hover:shadow-card-hover"
-                >
-                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700 group-hover:bg-brand-700 group-hover:text-white">
-                    <Icon name={p.icon} className="h-6 w-6" />
-                  </span>
-                  <h3 className="mt-4 text-base font-bold text-slate-900">{p.name}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{p.summary}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
-                    View details <ArrowRight className="h-4 w-4" />
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
+          <div className="mt-6">
+            <ProductCarousel items={related} />
           </div>
         </div>
       </section>

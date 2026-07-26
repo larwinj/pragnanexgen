@@ -55,10 +55,20 @@ export default function FloatingContact() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="grid h-14 w-14 place-items-center rounded-full bg-brand-700 text-white shadow-card-hover transition-all hover:bg-brand-800"
+        className="relative grid h-14 w-14 place-items-center rounded-full overflow-hidden shadow-card-hover transition-transform hover:scale-105"
         aria-label={open ? 'Close contact options' : 'Open contact options'}
       >
-        {open ? <X className="h-6 w-6" /> : <Plus className="h-6 w-6" />}
+        {open ? (
+          <div className="grid h-full w-full place-items-center bg-brand-800 text-white">
+            <X className="h-6 w-6 text-white" />
+          </div>
+        ) : (
+          <img
+            src="/contact-button.png"
+            alt="Contact Us"
+            className="h-full w-full object-cover"
+          />
+        )}
       </button>
     </div>
   )

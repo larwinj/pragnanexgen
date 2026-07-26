@@ -62,7 +62,7 @@ export default function Solutions() {
             eyebrow="Industries"
             title="Serving the sectors that can't afford downtime"
           />
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((ind, i) => (
               <Reveal key={ind.name} delay={i * 90}>
                 <div className="card h-full p-8 hover:-translate-y-1 hover:shadow-card-hover">

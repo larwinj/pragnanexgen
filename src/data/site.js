@@ -30,12 +30,10 @@ export const company = {
 }
 
 export const specialties = [
-  'TBR22 Wireless Temperature Sensor',
+  'TBR22 Temperature Sensor',
   'Environmental Sensor TBR22-BE',
-  'Data Collectors & Gateways',
+  'Data Collectors',
   'AI Monitoring Platform',
-  'Substation & Switchgear Monitoring',
-  'Technology Consulting',
 ]
 
 export const stats = [
@@ -48,8 +46,6 @@ export const stats = [
 // Product categories used for filtering on the Products page
 export const productCategories = [
   { id: 'sensors', name: 'Wireless Sensors' },
-  { id: 'thermal', name: 'Thermal Imaging' },
-  { id: 'ai', name: 'AI Platforms' },
   { id: 'gateway', name: 'Data Collectors' },
   { id: 'ai', name: 'AI Platforms' },
 ]
@@ -63,8 +59,7 @@ export const products = [
     tagline: 'Continuous, battery-efficient temperature monitoring',
     summary:
       'Compact wireless sensors that continuously track temperature at critical points inside electrical cabinets, busbars and joints — helping you prevent overheating before it becomes failure.',
-    image:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
+    image: '/tbr22-sensor.jpg',
     features: [
       'Direct installation on busbars, cable terminations & contact points',
       'Powered by self-powered energy harvesting or battery supply (up to 10 years battery life)',
@@ -97,8 +92,7 @@ export const products = [
     tagline: 'High-Accuracy Wireless Temperature & Humidity Sensor',
     summary:
       'Temperature and humidity monitoring sensor with high accuracy, applicable in high electromagnetic field environments up to 500 kV.',
-    image:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+    image: '/environmental-sensor.jpg',
     features: [
       'Combined temperature and humidity monitoring for indoor assets',
       'Utilizes ultra-low-power technology ensuring service life up to 10 years',
@@ -262,6 +256,12 @@ export const industries = [
     icon: 'Factory',
     description:
       'Plants and facilities that rely on early fault detection, predictive maintenance and process safety to stay productive.',
+  },
+  {
+    name: 'Building Electrical Distribution System',
+    icon: 'Building2',
+    description:
+      'Electrical distribution systems in multi-story apartments & commercial malls, ensuring continuous thermal monitoring and safety across switchgears, busbars, and panels.',
   },
 ]
 

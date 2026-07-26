@@ -11,6 +11,7 @@ import Icon from '../components/Icon'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import CTASection from '../components/CTASection'
+import ProductCarousel from '../components/ProductCarousel'
 import {
   company,
   stats,
@@ -103,7 +104,7 @@ export default function Home() {
         {/* Specialty marquee-style strip */}
         <div className="relative border-t border-white/10 bg-white/5">
           <div className="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-2 py-4 text-xs font-medium uppercase tracking-wider text-brand-200">
-            {specialties.slice(0, 6).map((s) => (
+            {specialties.slice(0, 4).map((s) => (
               <span key={s} className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" /> {s}
               </span>
@@ -171,27 +172,10 @@ export default function Home() {
             title="Technology products built to monitor and protect"
             description="A complete, integrated portfolio — from wireless sensors and thermal cameras to data collectors and the AI platform that ties it all together."
           />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProducts.map((p, i) => (
-              <Reveal key={p.slug} delay={(i % 3) * 80}>
-                <Link
-                  to={`/products/${p.slug}`}
-                  className="card group flex h-full flex-col p-7 hover:-translate-y-1 hover:shadow-card-hover"
-                >
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-brand-50 text-brand-700 transition-colors group-hover:bg-brand-700 group-hover:text-white">
-                    <Icon name={p.icon} className="h-7 w-7" />
-                  </span>
-                  <h3 className="mt-5 text-lg font-bold text-slate-900">{p.name}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{p.summary}</p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
-                    Learn more
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
+          <div className="mt-8">
+            <ProductCarousel items={featuredProducts} />
           </div>
-          <div className="mt-12 text-center">
+          <div className="mt-10 text-center">
             <Link to="/products" className="btn-secondary">
               View All Products <ArrowRight className="h-4 w-4" />
             </Link>
@@ -210,7 +194,7 @@ export default function Home() {
               light
               eyebrow="AI Monitoring Platform"
               title="One intelligent platform for everything you monitor"
-              description="The Pragna Nexgen AI platform unifies data from every sensor and camera, delivering continuous automated monitoring so equipment failures are caught early and lifespans are extended."
+              description="The AI platform unifies data from every sensor and camera, delivering continuous automated monitoring so equipment failures are caught early and lifespans are extended."
             />
             <div className="mt-8 grid gap-5 sm:grid-cols-2">
               {[
@@ -280,7 +264,7 @@ export default function Home() {
             eyebrow="Industries We Serve"
             title="Trusted where reliability matters most"
           />
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((ind, i) => (
               <Reveal key={ind.name} delay={i * 90}>
                 <div className="group relative h-full overflow-hidden rounded-2xl bg-brand-900 p-8 text-white shadow-card">

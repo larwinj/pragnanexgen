@@ -69,7 +69,7 @@ export default function Footer() {
               Products & Solutions
             </h4>
             <ul className="mt-5 space-y-3 text-sm">
-              {products.slice(0, 6).map((p) => (
+              {products.slice(0, 4).map((p) => (
                 <li key={p.slug}>
                   <Link
                     to={`/products/${p.slug}`}
