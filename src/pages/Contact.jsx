@@ -1,27 +1,65 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Phone, Mail, MapPin, Globe, MessageCircle, Send, CheckCircle2, Clock } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import { company } from '../data/site'
-
 export default function Contact() {
+  const fileInputRef = useRef(null);
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '', file: null })
   const [sent, setSent] = useState(false)
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Compose a mailto with the enquiry details (no backend required).
-    const fileNotice = form.file ? `\nAttached file: ${form.file.name}` : ''
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}${fileNotice}\n\n${form.message}`,
-    )
-    const subject = encodeURIComponent(form.subject || 'Website Enquiry')
-    window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`
-    setSent(true)
-  }
+   const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  try {
+    const formData = new FormData();
+
+    formData.append("name", form.name);
+    formData.append("email", form.email);
+    formData.append("phone", form.phone);
+    formData.append("subject", form.subject);
+    formData.append("message", form.message);
+
+    if (form.file) {
+      formData.append("file", form.file);
+    }
+
+    const response = await fetch("http://localhost:5000/api/contact", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("Server error");
+    }
+
+    const data = await response.json();
+
+    if (data.success) {
+      setSent(true);
+
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+        file: null,
+      });
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } else {
+      alert(data.message || "Unable to send email.");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Unable to send email.");
+  }
+};
   const contactCards = [
     {
       icon: Phone,
@@ -30,17 +68,16 @@ export default function Contact() {
       href: `tel:+${company.phoneRaw}`,
     },
     {
-      icon: Mail,
-      label: 'Email Us',
-      value: company.email,
-      href: `mailto:${company.email}`,
-    },
-    {
       icon: MessageCircle,
       label: 'WhatsApp',
       value: company.whatsapp || '+91 7339491001',
       href: `https://wa.me/${company.whatsappRaw || '917339491001'}`,
       external: true,
+    },
+     {
+      icon: Mail,
+      label: 'Email Us',
+      value: company.email,
     },
     {
       icon: MapPin,
@@ -112,7 +149,7 @@ export default function Contact() {
                     </span>
                     <h3 className="mt-5 text-xl font-bold text-slate-900">Thank you!</h3>
                     <p className="mt-2 max-w-sm text-sm text-slate-600">
-                      Your email client should have opened with your enquiry. If not, email us
+                      Your enquiry has been sent successfully. Our team will contact you soon. If not, email us
                       directly at{' '}
                       <a href={`mailto:${company.email}`} className="font-semibold text-brand-700">
                         {company.email}
@@ -156,12 +193,18 @@ export default function Contact() {
                         <span className="text-xs font-normal text-slate-500">(Optional)</span>
                       </label>
                       <input
-                        id="attachment"
-                        name="attachment"
-                        type="file"
-                        onChange={(e) => setForm({ ...form, file: e.target.files[0] })}
-                        className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand-700 hover:file:bg-brand-100 focus:outline-none"
-                      />
+  ref={fileInputRef}
+  id="attachment"
+  name="attachment"
+  type="file"
+  onChange={(e) =>
+    setForm({
+      ...form,
+      file: e.target.files[0],
+    })
+  }
+  className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand-700 hover:file:bg-brand-100 focus:outline-none"
+/>
                       {form.file && (
                         <p className="mt-1.5 text-xs text-brand-700 font-medium">
                           Selected file: {form.file.name}
