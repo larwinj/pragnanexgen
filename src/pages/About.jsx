@@ -60,10 +60,6 @@ export default function About() {
                   <dd className="mt-1 text-sm font-medium text-slate-800">{company.address.full}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500">Company Size</dt>
-                  <dd className="mt-1 text-sm font-medium text-slate-800">{company.size}</dd>
-                </div>
-                <div>
                   <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500">Website</dt>
                   <dd className="mt-1 text-sm font-medium text-brand-700">{company.website}</dd>
                 </div>

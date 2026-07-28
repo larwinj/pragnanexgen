@@ -6,7 +6,7 @@ export default function Logo({ className = '' }) {
       <img
         src="/pn-logo.png"
         alt="PRAGNA NEXGEN TECHNOLOGIES"
-        className="h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+        className="h-16 w-auto object-contain transition-transform duration-300 hover:scale-105"
       />
     </Link>
   )

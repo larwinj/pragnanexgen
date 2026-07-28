@@ -14,7 +14,8 @@ export const company = {
   whatsapp: '+91 7339491001',
   whatsappRaw: '917339491001',
   website: 'www.pragnanexgen.com',
-  distributorText: 'We are the authorised distributors of wireless sensor VTI corporation in India',
+  distributorText:
+    'All the Products marketed by Pragna NexGen Technologies Pvt Ltd are manufactured by VIET TECHNOLOGY AND INVESTMENT CORPORATION (Vietnam)',
   address: {
     city: 'Chennai',
     region: 'Tamil Nadu',
@@ -22,9 +23,9 @@ export const company = {
     full: '17, Lady Madhavan Rd, Mahalingapuram, Nungambakkam, Chennai, Tamil Nadu 600034',
   },
   overview:
-    'We are a Next Generation Technology Consulting Company and provider of Next Generation Technology Products. AI-based platforms and solutions are our portfolio. We are the authorised distributors of wireless sensor VTI corporation in India — bringing advanced wireless temperature sensors, environmental sensors, data collectors and AI platforms to your operations.',
+    'We are a Next Generation Technology Consulting Company and provider of Next Generation Technology Products. AI-based platforms and solutions are our portfolio. We are the authorised distributors of wireless sensor VTI Corporation (Vietnam) in India — bringing advanced wireless temperature sensors, environmental sensors, data collectors and AI platforms to your operations.',
   social: {
-    linkedin: 'https://www.linkedin.com/company/pragna-nexgen-technologies',
+    linkedin: 'https://www.linkedin.com/company/pragna-nexgen-technologies-private-limited/',
     website: 'https://www.pragnanexgen.com',
   },
 }
@@ -126,8 +127,7 @@ export const products = [
     tagline: 'Wireless Sensor Gateway & Multi-Protocol Controller (GWC-24-IB-TH)',
     summary:
       'Collects data from wireless sensors utilizing 2.4GHz wireless technology with 16 channels, forwarding readings to central monitoring or SCADA via RJ45 Ethernet, Wi-Fi, 4G LTE, or RS485.',
-    image:
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
+    image: '/gwc-3g-16-tt-1.png',
     features: [
       '2.4GHz wireless technology with 16 channels for optimal transmission',
       'License-free ISM band usage with user-friendly web GUI integrated',
@@ -286,9 +286,9 @@ export const whyChoose = [
   },
   {
     icon: 'Globe2',
-    title: 'Authorised VTI Distributor',
+    title: 'Authorised VTI Corporation (Vietnam) Distributor',
     description:
-      'We are the authorised distributors of wireless sensor VTI corporation in India, delivering certified, high-grade hardware.',
+      'We are the authorised distributors of wireless sensor VTI Corporation (Vietnam) in India, delivering certified, high-grade hardware.',
   },
 ]
 

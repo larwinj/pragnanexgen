@@ -3,9 +3,6 @@ import {
   ArrowRight,
   CheckCircle2,
   Bell,
-  Boxes,
-  MonitorSmartphone,
-  Settings2,
 } from 'lucide-react'
 import Icon from '../components/Icon'
 import Reveal from '../components/Reveal'
@@ -180,56 +177,6 @@ export default function Home() {
               View All Products <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* ============ AI PLATFORM ============ */}
-      <section className="section relative overflow-hidden bg-brand-900">
-        <div className="pointer-events-none absolute inset-0 grid-pattern opacity-30" />
-        <div className="pointer-events-none absolute -right-24 top-1/3 h-80 w-80 rounded-full bg-accent-500/20 blur-3xl" />
-        <div className="container-page relative grid items-center gap-14 lg:grid-cols-2">
-          <div>
-            <SectionHeading
-              align="left"
-              light
-              eyebrow="AI Monitoring Platform"
-              title="One intelligent platform for everything you monitor"
-              description="The AI platform unifies data from every sensor and camera, delivering continuous automated monitoring so equipment failures are caught early and lifespans are extended."
-            />
-            <div className="mt-8 grid gap-5 sm:grid-cols-2">
-              {[
-                { icon: Bell, title: '24/7 Automated Alerts', text: 'Instant push, email and SCADA notifications.' },
-                { icon: Settings2, title: 'Custom Thresholds', text: 'Flexible sampling rates and alert rules.' },
-                { icon: Boxes, title: '3D / BIM Visualisation', text: 'See assets in context, not just tables.' },
-                { icon: MonitorSmartphone, title: 'Multi-System Integration', text: 'Connects to SCADA and mobile.' },
-              ].map(({ icon: I, title, text }) => (
-                <Reveal key={title}>
-                  <div className="flex gap-4 rounded-xl border border-white/10 bg-white/5 p-4">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-accent-500/20 text-accent-400">
-                      <I className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-white">{title}</p>
-                      <p className="mt-1 text-xs leading-relaxed text-brand-200">{text}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-            <Link to="/products/ai-monitoring-platform" className="btn-accent mt-8">
-              Explore the Platform <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <Reveal delay={120}>
-            <div className="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80"
-                alt="AI monitoring dashboard"
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
-            </div>
-          </Reveal>
         </div>
       </section>
 
