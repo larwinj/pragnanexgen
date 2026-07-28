@@ -4,17 +4,45 @@ import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
 import Icon from './Icon'
 import { products } from '../data/site'
 
+// How many cards are visible at once per breakpoint — must match the
+// card width classes below (w-full / sm:w-1/2 / lg:w-1/3 / xl:w-1/4).
+function getItemsPerView(width) {
+  if (width >= 1280) return 4
+  if (width >= 1024) return 3
+  if (width >= 640) return 2
+  return 1
+}
+
 export default function ProductCarousel({ items = products, autoPlay = false }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [autoSlide, setAutoSlide] = useState(autoPlay)
+  const [itemsPerView, setItemsPerView] = useState(() =>
+    typeof window === 'undefined' ? 1 : getItemsPerView(window.innerWidth)
+  )
   const autoSlideTimerRef = useRef(null)
 
-  // Max index calculation depending on items
-  const maxIndex = Math.max(0, items.length - 1)
+  // Track viewport width so we always know how many cards are on screen
+  useEffect(() => {
+    const handleResize = () => setItemsPerView(getItemsPerView(window.innerWidth))
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Last valid scroll position: once the remaining cards fill the view, stop
+  const maxIndex = Math.max(0, items.length - itemsPerView)
+
+  // Clamp current position whenever the viewport or item count changes
+  useEffect(() => {
+    setCurrentIndex((prev) => Math.min(prev, maxIndex))
+  }, [maxIndex])
+
+  // Nothing to scroll to when every card already fits on screen
+  const canScroll = maxIndex > 0
 
   // Auto slide loop (disabled by default so it stays idle)
   useEffect(() => {
-    if (!autoSlide) {
+    if (!autoSlide || !canScroll) {
       if (autoSlideTimerRef.current) clearInterval(autoSlideTimerRef.current)
       return
     }
@@ -26,7 +54,7 @@ export default function ProductCarousel({ items = products, autoPlay = false }) 
     return () => {
       if (autoSlideTimerRef.current) clearInterval(autoSlideTimerRef.current)
     }
-  }, [autoSlide, maxIndex])
+  }, [autoSlide, maxIndex, canScroll])
 
   const handlePrev = () => {
     setAutoSlide(false)
@@ -40,50 +68,54 @@ export default function ProductCarousel({ items = products, autoPlay = false }) 
 
   return (
     <div className="relative w-full py-4">
-      {/* Header controls: Indicators + Arrows */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          {items.map((_, idx) => (
+      {/* Header controls: Indicators + Arrows (hidden once every card already fits on screen) */}
+      {canScroll && (
+        <div className="mb-6 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {Array.from({ length: maxIndex + 1 }, (_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => {
+                  setAutoSlide(false)
+                  setCurrentIndex(idx)
+                }}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  currentIndex === idx ? 'w-8 bg-brand-700' : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+          <div className="flex items-center gap-3">
             <button
-              key={idx}
               type="button"
-              onClick={() => {
-                setAutoSlide(false)
-                setCurrentIndex(idx)
-              }}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                currentIndex === idx ? 'w-8 bg-brand-700' : 'w-2.5 bg-slate-300 hover:bg-slate-400'
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
+              onClick={handlePrev}
+              className="grid h-11 w-11 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all hover:border-brand-600 hover:bg-brand-700 hover:text-white"
+              aria-label="Previous product"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={handleNext}
+              className="grid h-11 w-11 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all hover:border-brand-600 hover:bg-brand-700 hover:text-white"
+              aria-label="Next product"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={handlePrev}
-            className="grid h-11 w-11 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all hover:border-brand-600 hover:bg-brand-700 hover:text-white"
-            aria-label="Previous product"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            onClick={handleNext}
-            className="grid h-11 w-11 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all hover:border-brand-600 hover:bg-brand-700 hover:text-white"
-            aria-label="Next product"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        </div>
-      </div>
+      )}
 
       {/* Carousel Track */}
       <div className="overflow-hidden rounded-2xl p-1">
         <div
           className="flex transition-transform duration-500 ease-out gap-6"
           style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
+            // Step by one card width + its share of the gap-6 (24px) gap, so
+            // cards line up exactly at any items-per-view count.
+            transform: `translateX(calc(-${currentIndex} * (100% + 24px) / ${itemsPerView}))`,
           }}
         >
           {items.map((p) => (

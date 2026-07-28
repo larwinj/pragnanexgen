@@ -1,7 +1,7 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import multer from "multer";
-import fs from "fs";
+import fs from "fs/promises";
 
 const router = express.Router();
 
@@ -87,12 +87,6 @@ router.post("/", upload.single("file"), async (req, res) => {
     console.log("✅ Email sent successfully");
     console.log(info);
 
-    if (req.file) {
-      fs.unlink(req.file.path, (err) => {
-        if (err) console.error("File delete error:", err);
-      });
-    }
-
     return res.status(200).json({
       success: true,
       message: "Email sent successfully.",
@@ -107,6 +101,14 @@ router.post("/", upload.single("file"), async (req, res) => {
       success: false,
       message: error.message,
     });
+  } finally {
+    if (req.file) {
+      try {
+        await fs.unlink(req.file.path);
+      } catch (err) {
+        console.error("File delete error:", err);
+      }
+    }
   }
 });
 
