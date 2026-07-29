@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Mail, Phone, MapPin, Globe, Linkedin, ArrowRight } from 'lucide-react'
+import { Phone, Mail, MapPin, Globe, MessageCircle, Send, CheckCircle2, Clock, Linkedin } from "lucide-react";
 import Logo from './Logo'
 import { company, navLinks, products } from '../data/site'
 
