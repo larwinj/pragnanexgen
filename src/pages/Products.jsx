@@ -24,7 +24,7 @@ export default function Products() {
                 <FileText className="h-6 w-6" />
               </span>
               <div>
-                <h3 className="text-lg font-bold text-white">Product Catalog Brochure</h3>
+                <h3 className="text-lg font-bold text-white">Product Brochure</h3>
                 <p className="text-xs text-brand-200 sm:text-sm">
                   Download our official product brochure for complete technical specifications & test standards.
                 </p>
