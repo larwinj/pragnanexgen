@@ -25,25 +25,45 @@ export default function Footer() {
               {company.distributorText}
             </div>
             <div className="mt-6 flex gap-3">
+            <a
+              href={company.social.linkedin}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
+              aria-label="LinkedIn"
+            >
+            <Linkedin className="h-5 w-5" />
+            </a>
+            <a
+              href={company.social.facebook}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
+              aria-label="Facebook"
+            >
+              <Facebook className="h-5 w-5" />
+            </a>
+          
+            <a
+              href={company.social.instagram}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
+              aria-label="Instagram"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
+          
               <a
-                href={company.social.linkedin}
+                href={company.social.twitter}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
-                aria-label="LinkedIn"
+                aria-label="Twitter"
               >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href={`https://${company.website}`}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
-                aria-label="Website"
-              >
-                <Globe className="h-5 w-5" />
-              </a>
-            </div>
+              <Twitter className="h-5 w-5" />
+            </a>
+          </div>
           </div>
 
           {/* Links */}
