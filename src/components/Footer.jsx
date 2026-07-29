@@ -1,5 +1,15 @@
 import { Link } from 'react-router-dom'
-import { Mail, Phone, MapPin, Globe, Linkedin, ArrowRight } from 'lucide-react'
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Globe,
+  Linkedin,
+  Facebook,
+  Instagram,
+  Twitter,
+  ArrowRight,
+} from "lucide-react"
 import Logo from './Logo'
 import { company, navLinks, products } from '../data/site'
 
@@ -34,7 +44,7 @@ export default function Footer() {
             >
             <Linkedin className="h-5 w-5" />
             </a>
-            {/* <a
+            <a
               href={company.social.facebook}
               target="_blank"
               rel="noreferrer noopener"
@@ -62,7 +72,7 @@ export default function Footer() {
                 aria-label="Twitter"
               >
               <Twitter className="h-5 w-5" />
-            </a> */}
+            </a> 
           </div>
           </div>
 
