@@ -93,7 +93,7 @@ export const products = [
     tagline: 'High-Accuracy Wireless Temperature & Humidity Sensor',
     summary:
       'Temperature and humidity monitoring sensor with high accuracy, applicable in high electromagnetic field environments up to 500 kV.',
-    image: '/environmental-sensor.jpg',
+    image: '/OIP.jpg',
     features: [
       'Combined temperature and humidity monitoring for indoor assets',
       'Utilizes ultra-low-power technology ensuring service life up to 10 years',
