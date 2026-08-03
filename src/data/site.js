@@ -276,7 +276,7 @@ export const whyChoose = [
     icon: 'GraduationCap',
     title: 'Deep Expertise',
     description:
-      'A next-generation technology consulting team that understands both the hardware and the AI that makes it intelligent.',
+      'A next-generation technology consulting team with deep expertise in hardware.',
   },
   {
     icon: 'ShieldCheck',
