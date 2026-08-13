@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { Phone, Mail, MapPin, Globe, MessageCircle, Send, CheckCircle2, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, Globe, MessageCircle, Send, CheckCircle2, Clock, Loader2 } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import { company } from '../data/site'
@@ -7,11 +7,14 @@ export default function Contact() {
   const fileInputRef = useRef(null);
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '', file: null })
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
    const handleSubmit = async (e) => {
   e.preventDefault();
+  if (sending) return;
+  setSending(true);
 
   try {
     const formData = new FormData();
@@ -26,7 +29,7 @@ export default function Contact() {
       formData.append("file", form.file);
     }
 
-    const response = await fetch("http://localhost:5000/api/contact", {
+    const response = await fetch(`${window.location.origin}/api/contact`, {
       method: "POST",
       body: formData,
     });
@@ -58,6 +61,8 @@ export default function Contact() {
   } catch (error) {
     console.error(error);
     alert("Unable to send email.");
+  } finally {
+    setSending(false);
   }
 };
   const contactCards = [
@@ -167,10 +172,10 @@ export default function Contact() {
                 ) : (
                   <form onSubmit={handleSubmit} className="mt-6 space-y-5">
                     <div className="grid gap-5 sm:grid-cols-2">
-                      <Field label="Full Name" name="name" value={form.name} onChange={update} required />
-                      <Field label="Email Address" name="email" type="email" value={form.email} onChange={update} required />
-                      <Field label="Phone Number" name="phone" type="tel" value={form.phone} onChange={update} />
-                      <Field label="Subject" name="subject" value={form.subject} onChange={update} />
+                      <Field label="Full Name" name="name" value={form.name} onChange={update} required disabled={sending} />
+                      <Field label="Email Address" name="email" type="email" value={form.email} onChange={update} required disabled={sending} />
+                      <Field label="Phone Number" name="phone" type="tel" value={form.phone} onChange={update} disabled={sending} />
+                      <Field label="Subject" name="subject" value={form.subject} onChange={update} disabled={sending} />
                     </div>
                     <div>
                       <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-slate-700">
@@ -183,8 +188,9 @@ export default function Contact() {
                         required
                         value={form.message}
                         onChange={update}
+                        disabled={sending}
                         placeholder="Tell us about your requirements..."
-                        className="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100"
+                        className="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
                       />
                     </div>
                     <div>
@@ -197,13 +203,14 @@ export default function Contact() {
   id="attachment"
   name="attachment"
   type="file"
+  disabled={sending}
   onChange={(e) =>
     setForm({
       ...form,
       file: e.target.files[0],
     })
   }
-  className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand-700 hover:file:bg-brand-100 focus:outline-none"
+  className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand-700 hover:file:bg-brand-100 focus:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
 />
                       {form.file && (
                         <p className="mt-1.5 text-xs text-brand-700 font-medium">
@@ -211,8 +218,20 @@ export default function Contact() {
                         </p>
                       )}
                     </div>
-                    <button type="submit" className="btn-primary w-full sm:w-auto">
-                      Send Enquiry <Send className="h-4 w-4" />
+                    <button
+                      type="submit"
+                      disabled={sending}
+                      className="btn-primary w-full sm:w-auto disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {sending ? (
+                        <>
+                          Sending... <Loader2 className="h-4 w-4 animate-spin" />
+                        </>
+                      ) : (
+                        <>
+                          Send Enquiry <Send className="h-4 w-4" />
+                        </>
+                      )}
                     </button>
                   </form>
                 )}
@@ -274,7 +293,7 @@ export default function Contact() {
   )
 }
 
-function Field({ label, name, type = 'text', value, onChange, required }) {
+function Field({ label, name, type = 'text', value, onChange, required, disabled }) {
   return (
     <div>
       <label htmlFor={name} className="mb-1.5 block text-sm font-medium text-slate-700">
@@ -287,7 +306,8 @@ function Field({ label, name, type = 'text', value, onChange, required }) {
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100"
+        disabled={disabled}
+        className="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
       />
     </div>
   )
