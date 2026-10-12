@@ -123,3 +123,5 @@ Update the `company` object there to change name, phone, email, address, etc.
 - Phone / WhatsApp: +91 7339491001
 - Email: director@pragnanexgen.com
 - Web: www.pragnanexgen.com
+
+## Implemented lattest version v2
