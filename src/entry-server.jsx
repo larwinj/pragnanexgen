@@ -5,7 +5,7 @@ import { StaticRouter } from 'react-router-dom/server'
 import App from './App.jsx'
 
 export { routes } from './data/routes'
-export { getPageMeta, renderHeadTags } from './seo/meta'
+export { getPageMeta, renderHeadTags, SEO_LIMITS } from './seo/meta'
 export { company } from './data/site'
 
 export function render(url) {

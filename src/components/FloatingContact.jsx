@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MessageCircle, Mail, Phone, Plus, X } from 'lucide-react'
+import { MessageCircle, Mail, Phone, X } from 'lucide-react'
 import { company } from '../data/site'
 
 // Floating quick-contact bubble: WhatsApp, call and email.

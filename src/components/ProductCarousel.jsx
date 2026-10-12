@@ -26,7 +26,7 @@ function ProductCard({ product: p, clone = false }) {
         <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <img
             src={p.image}
-            alt={clone ? '' : p.imageAlt || p.name}
+            alt={p.imageAlt || p.name}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />

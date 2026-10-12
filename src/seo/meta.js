@@ -8,26 +8,26 @@ const DEFAULT_IMAGE = '/og-default.jpg'
 
 const pages = {
   '/': {
-    title: 'Pragna NexGen Technologies | Wireless Temperature Sensors, DTS & AI Monitoring, India',
+    title: 'Pragna NexGen Technologies | Wireless Sensors & DTS, India',
     description:
-      'Pragna NexGen Technologies, Chennai — authorised distributor of VTI Corporation (Vietnam) in India: fibre-optic distributed temperature sensing (DTS), transmission-line and wireless temperature sensors, data collectors and AI monitoring.',
+      'Pragna NexGen Technologies, Chennai: authorised VTI distributor in India for fibre-optic DTS, wireless temperature sensors and AI monitoring.',
   },
   '/about': {
     title: 'About Us | Pragna NexGen Technologies, Chennai',
     description:
-      'Pragna NexGen Technologies Pvt Ltd is a next-generation technology consulting company in Chennai and the authorised distributor of VTI Corporation (Vietnam) wireless sensors and DTS in India.',
+      'Pragna NexGen Technologies, Chennai: next-generation technology consulting and authorised distributor of VTI Corporation (Vietnam) sensors in India.',
     crumb: 'About Us',
   },
   '/products': {
-    title: 'Products — DTS, Transmission-Line & Wireless Temperature Sensors | Pragna NexGen',
+    title: 'Products: DTS & Wireless Temperature Sensors | Pragna NexGen',
     description:
-      'VTI-GL-100C distributed temperature sensing, VTI-TS-26 transmission-line sensor, TBR22 wireless temperature sensors, environmental sensors, data collectors and the AI monitoring platform.',
+      'VTI-GL-100C DTS, VTI-TS-26 transmission-line sensor, TBR22 wireless temperature sensors, data collectors and the AI monitoring platform.',
     crumb: 'Products',
   },
   '/solutions': {
-    title: 'Monitoring Solutions — Busway, Oil & Gas, Mining, Cable Tunnels, DLR Input | Pragna NexGen',
+    title: 'Monitoring Solutions: DTS, Busway, Oil & Gas | Pragna NexGen',
     description:
-      'Temperature monitoring solutions for substations, MV switchgear, busways, oil & gas pipelines and tanks, chemical plants, mining conveyors, cable tunnels and transmission-line connections.',
+      'Temperature monitoring for substations, switchgear, busways, oil & gas, chemical plants, mining conveyors, cable tunnels and transmission lines.',
     crumb: 'Solutions',
   },
   '/contact': {
@@ -40,7 +40,19 @@ const pages = {
 
 const absolute = (url) => (/^https?:\/\//.test(url) ? url : `${SITE}${url}`)
 const canonicalFor = (pathname) => (pathname === '/' ? `${SITE}/` : `${SITE}${pathname}`)
-const clip = (text, max = 160) => (text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`)
+// Search-engine display limits (Bing Webmaster Tools flags anything outside these).
+export const SEO_LIMITS = { titleMax: 60, descriptionMin: 50, descriptionMax: 160 }
+
+// Shortens a description to the limit at a word boundary.
+const clip = (text, max = SEO_LIMITS.descriptionMax) => {
+  if (text.length <= max) return text
+  const cut = text.slice(0, max - 1)
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,;:—–-]+$/, '')}…`
+}
+
+// Product page title: "<name> | <brand>" when it fits, otherwise a shorter brand, otherwise the name.
+const productTitle = (name) =>
+  [`${name} | ${BRAND}`, `${name} | Pragna NexGen`, name].find((t) => t.length <= SEO_LIMITS.titleMax) || name
 
 const organization = {
   '@context': 'https://schema.org',
@@ -140,7 +152,7 @@ export function getPageMeta(pathname) {
   const product = slug && products.find((p) => p.slug === slug)
   if (product) {
     return {
-      title: product.seoTitle || `${product.name} | ${BRAND}`,
+      title: product.seoTitle || productTitle(product.name),
       description: clip(product.seoDescription || product.summary),
       canonical: canonicalFor(path),
       image: absolute(product.image),

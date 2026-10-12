@@ -12,7 +12,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(root, 'dist')
 const ssrDir = path.join(root, 'dist-ssr')
 
-const { render, routes, getPageMeta, renderHeadTags, company } = await import(
+const { render, routes, getPageMeta, renderHeadTags, company, SEO_LIMITS } = await import(
   pathToFileURL(path.join(ssrDir, 'entry-server.js')).href
 )
 
@@ -21,9 +21,32 @@ for (const marker of ['<!--app-head-->', '<!--app-html-->']) {
   if (!template.includes(marker)) throw new Error(`index.html is missing the ${marker} placeholder`)
 }
 
+// SEO checks matching what Bing Webmaster Tools reports as errors. Any problem fails the
+// build, so a non-compliant page is never deployed.
+const seoProblems = []
+function auditSeo(url, meta, html) {
+  const { titleMax, descriptionMin, descriptionMax } = SEO_LIMITS
+  if (meta.title.length > titleMax) {
+    seoProblems.push(`${url}: title is ${meta.title.length} chars (max ${titleMax}) — "${meta.title}"`)
+  }
+  const d = meta.description.length
+  if (d < descriptionMin || d > descriptionMax) {
+    seoProblems.push(`${url}: meta description is ${d} chars (allowed ${descriptionMin}–${descriptionMax})`)
+  }
+  const body = html.slice(html.indexOf('<div id="root">'))
+  for (const img of body.match(/<img\b[^>]*>/g) || []) {
+    if (!/\balt="[^"]+"/.test(img)) {
+      seoProblems.push(`${url}: image without alt text — ${(/src="([^"]*)"/.exec(img) || [])[1]}`)
+    }
+  }
+  if ((body.match(/<h1\b/g) || []).length !== 1) seoProblems.push(`${url}: page must have exactly one <h1>`)
+}
+
 function renderPage(url, metaPath = url) {
-  const head = renderHeadTags(getPageMeta(metaPath))
-  return template.replace('<!--app-head-->', head).replace('<!--app-html-->', render(url))
+  const meta = getPageMeta(metaPath)
+  const html = template.replace('<!--app-head-->', renderHeadTags(meta)).replace('<!--app-html-->', render(url))
+  auditSeo(url, meta, html)
+  return html
 }
 
 async function write(file, html) {
@@ -54,3 +77,10 @@ await write('sitemap.xml', sitemap)
 console.log(`  sitemap.xml: ${routes.length} URLs on ${company.siteUrl}`)
 
 await fs.rm(ssrDir, { recursive: true, force: true })
+
+if (seoProblems.length > 0) {
+  console.error(`\n✗ SEO check failed (${seoProblems.length} problem(s)) — fix before deploying:`)
+  seoProblems.forEach((p) => console.error(`  - ${p}`))
+  process.exit(1)
+}
+console.log(`  SEO check passed: titles ≤ ${SEO_LIMITS.titleMax} chars, descriptions ${SEO_LIMITS.descriptionMin}–${SEO_LIMITS.descriptionMax} chars, all images have alt text, one <h1> per page`)

@@ -97,9 +97,9 @@ export const products = [
       'One armoured fibre gives a continuous temperature profile every 0.5 m over kilometres, with no electrical power and no electronics in the field.',
     image: '/images/products/vti-gl-100c-dts.jpg',
     imageAlt: 'VTI-GL-100C distributed temperature sensing (DTS) controller',
-    seoTitle: 'VTI-GL-100C Distributed Temperature Sensing (DTS) | Pragna NexGen India',
+    seoTitle: 'VTI-GL-100C Distributed Temperature Sensing | Pragna NexGen',
     seoDescription:
-      'VTI-GL-100C fibre-optic DTS: a continuous temperature profile every 0.5 m, 4 optical channels × 5 km = up to 20 km total, ±1 °C. For busways, oil & gas, petrochemical plants, mining conveyors and cable tunnels.',
+      'VTI-GL-100C fibre-optic DTS: 4 optical channels × 5 km = up to 20 km total, ±1 °C, 0.5 m resolution. For busways, oil & gas, mining and cable tunnels.',
     enquirySubject: 'DTS quotation request – VTI-GL-100C',
     highlights: [
       { value: '4 × 5 km', label: 'Up to 20 km total — 4 optical channels' },
@@ -251,9 +251,9 @@ export const products = [
       'Battery-free, self-powered wireless temperature sensor for conductor connections on 110–500 kV overhead lines and outdoor switchyards — hot-spot detection and a measured input to the utility’s dynamic line rating (DLR).',
     image: '/images/products/vti-ts-26.jpg',
     imageAlt: 'VTI-TS-26 self-powered wireless temperature sensor',
-    seoTitle: 'VTI-TS-26 Transmission-Line Temperature Sensor, DLR Input | Pragna NexGen India',
+    seoTitle: 'VTI-TS-26 Line Temperature Sensor, DLR Input | Pragna NexGen',
     seoDescription:
-      'VTI-TS-26 self-powered wireless temperature sensor for splices, dead-ends and jumpers on 110–500 kV lines. Hot-spot detection and DLR input. LoRa sub-GHz IN865 for India, up to 3 km line-of-sight, no battery.',
+      'Self-powered VTI-TS-26 sensor for splices, dead-ends and jumpers on 110–500 kV lines: hot-spot detection and DLR input. LoRa IN865, up to 3 km.',
     enquirySubject: 'Enquiry – VTI-TS-26 transmission-line sensor',
     highlights: [
       { value: 'LoRa sub-GHz', label: 'IN865 band for India' },
@@ -361,6 +361,8 @@ export const products = [
   },
   {
     slug: 'tbr22-temperature-sensor',
+    seoDescription:
+      'TBR22 wireless temperature sensor for busbars, cable terminations and contact points: ±1 °C, IP67, up to 500 kV, self-powered or 10-year battery.',
     name: 'TBR22 Temperature Sensor',
     category: 'sensors',
     icon: 'Thermometer',
@@ -429,6 +431,8 @@ export const products = [
   },
   {
     slug: 'data-collectors',
+    seoDescription:
+      'GWC-24-IB-TH data collector: 2.4 GHz wireless sensor gateway with Modbus TCP/RTU, IEC 60870-5-104, Ethernet, Wi-Fi, 4G LTE and RS485.',
     name: 'Data Collectors',
     category: 'gateway',
     icon: 'Router',
@@ -457,6 +461,8 @@ export const products = [
   },
   {
     slug: 'ai-monitoring-platform',
+    seoDescription:
+      'Centralised AI monitoring platform to visualise, analyse and diagnose electrical equipment condition across substations and plants, with alerts.',
     name: 'AI Monitoring Platform',
     category: 'ai',
     icon: 'BrainCircuit',
