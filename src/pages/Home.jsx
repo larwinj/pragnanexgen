@@ -9,6 +9,7 @@ import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import CTASection from '../components/CTASection'
 import ProductCarousel from '../components/ProductCarousel'
+import LinkedText from '../components/LinkedText'
 import {
   company,
   stats,
@@ -101,7 +102,7 @@ export default function Home() {
         {/* Specialty marquee-style strip */}
         <div className="relative border-t border-white/10 bg-white/5">
           <div className="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-2 py-4 text-xs font-medium uppercase tracking-wider text-brand-200">
-            {specialties.slice(0, 4).map((s) => (
+            {specialties.map((s) => (
               <span key={s} className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-400" /> {s}
               </span>
@@ -167,7 +168,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Products"
             title="Technology products built to monitor and protect"
-            description="A complete, integrated portfolio — from wireless sensors and thermal cameras to data collectors and the AI platform that ties it all together."
+            description="A complete, integrated portfolio — from fibre-optic distributed temperature sensing and transmission-line sensors to wireless point sensors, data collectors and the AI platform that ties it all together."
           />
           <div className="mt-8">
             <ProductCarousel items={featuredProducts} />
@@ -211,9 +212,9 @@ export default function Home() {
             eyebrow="Industries We Serve"
             title="Trusted where reliability matters most"
           />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {industries.map((ind, i) => (
-              <Reveal key={ind.name} delay={i * 90}>
+              <Reveal key={ind.name} delay={(i % 3) * 90}>
                 <div className="group relative h-full overflow-hidden rounded-2xl bg-brand-900 p-8 text-white shadow-card">
                   <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-accent-500/20 blur-2xl transition-all group-hover:bg-accent-500/40" />
                   <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-white/10 text-accent-400">
@@ -221,7 +222,11 @@ export default function Home() {
                   </span>
                   <h3 className="relative mt-5 text-xl font-bold text-white">{ind.name}</h3>
                   <p className="relative mt-3 text-sm leading-relaxed text-brand-100">
-                    {ind.description}
+                    <LinkedText
+                      text={ind.description}
+                      link={ind.link}
+                      linkClassName="text-white decoration-accent-400/60 hover:text-accent-400"
+                    />
                   </p>
                 </div>
               </Reveal>

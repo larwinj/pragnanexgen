@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
-Sitemap: https://pragnanexgen.com/sitemap.xml
+Sitemap: https://www.pragnanexgen.com/sitemap.xml

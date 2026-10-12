@@ -26,6 +26,12 @@ import {
   FileSpreadsheet,
   Presentation,
   BookOpen,
+  Building2,
+  Cable,
+  Fuel,
+  FlaskConical,
+  Pickaxe,
+  UtilityPole,
   Circle,
 } from 'lucide-react'
 
@@ -55,6 +61,12 @@ const registry = {
   FileSpreadsheet,
   Presentation,
   BookOpen,
+  Building2,
+  Cable,
+  Fuel,
+  FlaskConical,
+  Pickaxe,
+  UtilityPole,
 }
 
 // Renders a lucide-react icon by name, e.g. <Icon name="Zap" className="h-6 w-6" />

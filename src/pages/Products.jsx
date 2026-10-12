@@ -4,7 +4,9 @@ import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import CTASection from '../components/CTASection'
 import ProductCarousel from '../components/ProductCarousel'
-import { products } from '../data/site'
+import { products, defaultBrochure } from '../data/site'
+
+const dtsBrochure = products.find((p) => p.slug === 'dts-vti-gl-100c')?.brochure
 
 export default function Products() {
   return (
@@ -12,7 +14,7 @@ export default function Products() {
       <PageHeader
         title="Products & Solutions"
         crumb="Products"
-        subtitle="Authorised distributor of wireless sensors in India, manufactured by VIET TECHNOLOGY AND INVESTMENT CORPORATION JOIN STOCK COMPANY and marketed by Pragna NexGen Technologies Pvt Ltd, providing high-precision wireless temperature sensors, environmental sensors, data collectors and AI platforms."
+        subtitle="Authorised distributor in India of VTI Corporation (Vietnam) — VIET TECHNOLOGY AND INVESTMENT CORPORATION JOINT STOCK COMPANY — marketed by Pragna NexGen Technologies Pvt Ltd: fibre-optic distributed temperature sensing (DTS), transmission-line sensors, high-precision wireless temperature and environmental sensors, data collectors and AI platforms."
       />
 
       <section className="section">
@@ -24,21 +26,34 @@ export default function Products() {
                 <FileText className="h-6 w-6" />
               </span>
               <div>
-                <h3 className="text-lg font-bold text-white">Product Brochure</h3>
+                <h3 className="text-lg font-bold text-white">Product Brochures</h3>
                 <p className="text-xs text-brand-200 sm:text-sm">
-                  Download our official product brochure for complete technical specifications & test standards.
+                  Download our official product brochures for complete technical specifications & test standards.
                 </p>
               </div>
             </div>
-            <a
-              href="/Pragna_NexGen_Wireless_Sensors_Brochure.pdf"
-              download="Pragna_NexGen_Wireless_Sensors_Brochure.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-accent shrink-0"
-            >
-              <Download className="h-4 w-4" /> Download Brochure (PDF)
-            </a>
+            <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto lg:flex-row">
+              <a
+                href={defaultBrochure.href}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-accent"
+              >
+                <Download className="h-4 w-4" /> Wireless Sensors Brochure (PDF)
+              </a>
+              {dtsBrochure && (
+                <a
+                  href={dtsBrochure.href}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn border border-white/25 text-white hover:bg-white/10"
+                >
+                  <Download className="h-4 w-4" /> DTS Brochure (PDF, 3.1 MB)
+                </a>
+              )}
+            </div>
           </div>
 
           {/* Product Carousel */}

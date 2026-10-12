@@ -11,7 +11,16 @@ import {
   ArrowRight,
 } from "lucide-react"
 import Logo from './Logo'
+import VisitorCounter from './VisitorCounter'
 import { company, navLinks, products } from '../data/site'
+
+// Only networks with a URL in `company.social` are rendered.
+const socialLinks = [
+  { label: 'LinkedIn', href: company.social.linkedin, icon: Linkedin },
+  { label: 'Facebook', href: company.social.facebook, icon: Facebook },
+  { label: 'Instagram', href: company.social.instagram, icon: Instagram },
+  { label: 'Twitter', href: company.social.twitter, icon: Twitter },
+]
 
 export default function Footer() {
   const year = 2026
@@ -35,45 +44,24 @@ export default function Footer() {
               {company.distributorText}
             </div>
             <div className="mt-6 flex gap-3">
-            <a
-              href={company.social.linkedin}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
-              aria-label="LinkedIn"
-            >
-            <Linkedin className="h-5 w-5" />
-            </a>
-            <a
-              href={company.social.facebook}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
-              aria-label="Facebook"
-            >
-              <Facebook className="h-5 w-5" />
-            </a>
-          
-            <a
-              href={company.social.instagram}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
-              aria-label="Instagram"
-            >
-              <Instagram className="h-5 w-5" />
-            </a>
-          
-              <a
-                href={company.social.twitter}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
-                aria-label="Twitter"
-              >
-              <Twitter className="h-5 w-5" />
-            </a> 
-          </div>
+              {socialLinks
+                .filter((l) => l.href)
+                .map(({ label, href, icon: I }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-white transition-colors hover:bg-accent-500"
+                    aria-label={label}
+                  >
+                    <I className="h-5 w-5" />
+                  </a>
+                ))}
+            </div>
+            <div className="mt-6">
+              <VisitorCounter />
+            </div>
           </div>
 
           {/* Links */}
@@ -99,13 +87,13 @@ export default function Footer() {
               Products & Solutions
             </h4>
             <ul className="mt-5 space-y-3 text-sm">
-              {products.slice(0, 4).map((p) => (
+              {products.map((p) => (
                 <li key={p.slug}>
                   <Link
                     to={`/products/${p.slug}`}
                     className="text-slate-400 transition-colors hover:text-accent-400"
                   >
-                    {p.name}
+                    {p.shortName || p.name}
                   </Link>
                 </li>
               ))}
@@ -142,8 +130,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-6 text-xs text-slate-500 sm:flex-row">
-          <p>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pb-24 pt-6 text-xs text-slate-500 sm:flex-row sm:pb-6 sm:pr-20">
+          <p className="text-center sm:text-left">
             © {year} {company.legalName}. All rights reserved.
           </p>
           <p>{company.tagline}</p>

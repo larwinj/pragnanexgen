@@ -16,9 +16,9 @@ function getItemsPerView(width) {
 export default function ProductCarousel({ items = products, autoPlay = false }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [autoSlide, setAutoSlide] = useState(autoPlay)
-  const [itemsPerView, setItemsPerView] = useState(() =>
-    typeof window === 'undefined' ? 1 : getItemsPerView(window.innerWidth)
-  )
+  // Start from a fixed value so prerendered HTML and the first client render match;
+  // the resize effect below sets the real value straight after hydration.
+  const [itemsPerView, setItemsPerView] = useState(1)
   const autoSlideTimerRef = useRef(null)
 
   // Track viewport width so we always know how many cards are on screen

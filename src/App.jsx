@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
@@ -10,8 +10,14 @@ import ProductDetail from './pages/ProductDetail'
 import Solutions from './pages/Solutions'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+import usePageMeta from './seo/usePageMeta'
 
+// The router is supplied by the entry point: BrowserRouter in the browser (main.jsx),
+// StaticRouter when prerendering (entry-server.jsx).
 export default function App() {
+  const { pathname } = useLocation()
+  usePageMeta(pathname)
+
   return (
     <div className="flex min-h-screen flex-col">
       <ScrollToTop />

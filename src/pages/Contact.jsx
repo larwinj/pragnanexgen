@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Phone, Mail, MapPin, Globe, MessageCircle, Send, CheckCircle2, Clock, Loader2 } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
@@ -10,6 +11,14 @@ export default function Contact() {
   const [sending, setSending] = useState(false)
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+
+  // Pre-fill the subject from links such as /contact?subject=… (set after mount so the
+  // prerendered markup and the first client render stay identical).
+  const [searchParams] = useSearchParams()
+  const presetSubject = searchParams.get('subject')
+  useEffect(() => {
+    if (presetSubject) setForm((f) => ({ ...f, subject: presetSubject.slice(0, 150) }))
+  }, [presetSubject])
 
    const handleSubmit = async (e) => {
   e.preventDefault();

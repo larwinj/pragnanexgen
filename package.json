@@ -8,13 +8,15 @@
     "server": "node server/server.js",
     "client": "vite",
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "preview": "vite preview",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "isbot": "^5.2.2",
     "lucide-react": "^0.400.0",
     "multer": "^2.2.0",
     "nodemailer": "^9.0.3",
